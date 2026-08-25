@@ -54,6 +54,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${inter.variable} ${serifDisplay.variable} ${monoCode.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="9386d268-4b0a-4b0d-884d-f7497685b6db"
+        ></script>
+      </head>
       <body className="flex min-h-full flex-col">
         <a
           href="#main"
