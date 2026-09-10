@@ -37,7 +37,7 @@ export const profile = {
    * extensions, or the profile reads as too narrow to hire.
    */
   pitch:
-    "Five years of applied engineering experience in structural analysis of composite and metallic structures — from laminate sizing, buckling and stability, and damage tolerance to correlation with test data.",
+    "Experienced structural and simulation engineer specializing in advanced composites, with strong fundamentals in metallic structural mechanics — delivering analysis from sizing, stability, and damage tolerance to experimental test correlation, and carrying results into automated manufacturing pipelines and verified robot programs.",
 } as const;
 
 /**
