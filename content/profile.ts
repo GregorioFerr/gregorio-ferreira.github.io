@@ -9,15 +9,15 @@
 export const profile = {
   name: "Gregório F. O. Ferreira",
   fullName: "Gregório Felipe Oliveira Ferreira, PhD",
-  role: "Simulation & Automation Engineer",
-  discipline: "Structural analysis · CAE · Process automation",
+  role: "Structural & Simulation Engineer",
+  discipline: "Structural analysis · Advanced composites · Process automation",
   location: "Limerick, Ireland",
   affiliation: "Bernal Institute, University of Limerick",
   email: "gregorio.ferreira@protonmail.com",
   phone: "+353 83 137 3213",
   cv: "/cv/Gregorio_Ferreira_CV.pdf",
   availability:
-    "Irish Stamp 4 — full work rights, no sponsorship needed. Open to relocation within the EU.",
+    "Irish Stamp 4 — full work rights in Ireland, no employer sponsorship required. Open to relocation within the EU.",
 
   /**
    * Portrait. Drop a square image at public/portrait.jpg (or .webp) and set
@@ -37,7 +37,7 @@ export const profile = {
    * extensions, or the profile reads as too narrow to hire.
    */
   pitch:
-    "Ten years working in structural analysis of composite and metallic structures — from laminate sizing, buckling and stability, and damage tolerance to correlation with test data. I automate repetitive analysis, extend commercial solvers when standard capabilities are not enough, and carry fibre-path and robot-programming work through to parts that are manufactured and tested in practice.",
+    "Five years of applied engineering experience in structural analysis of composite and metallic structures — from laminate sizing, buckling and stability, and damage tolerance to correlation with test data.",
 } as const;
 
 /**
@@ -46,11 +46,11 @@ export const profile = {
  * rather than inferring it from six case studies.
  */
 export const applications = [
-  "Aerospace structures",
-  "Thermoplastic composites",
-  "Pressure vessels",
-  "Robotic manufacturing",
-  "Simulation-driven design",
+  "Aerospace & space structures",
+  "High-performance composites (CF/PEEK)",
+  "Hydrogen & pressure vessels",
+  "Non-linear FEA & solver extensions",
+  "Design-to-manufacture automation",
 ] as const;
 
 export const links = [
