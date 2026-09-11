@@ -530,7 +530,7 @@ export const foundations: readonly Foundation[] = [
   },
   {
     area: "Structural stability",
-    work: "Linear eigenvalue buckling and strength of variable-stiffness plates, reproducing a published benchmark case (Gürdal et al.)",
+    work: "Linear eigenvalue buckling and strength analysis of variable-stiffness plates, verified against a published solution",
     evidence: "Benchmark study",
   },
   {
@@ -604,6 +604,7 @@ export const education: readonly EducationEntry[] = [
     period: "2012 — 2014",
     title: "MSc, Mechanical Engineering — Aeronautical Structures",
     org: "University of São Paulo",
+    note: "Dissertation: Composite material structures under tensile and impact loading — assessment of a material model",
   },
   {
     period: "2006 — 2011",
