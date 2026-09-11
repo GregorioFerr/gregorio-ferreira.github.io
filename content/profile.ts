@@ -401,7 +401,7 @@ export const cases: readonly Case[] = [
     problem:
       "An impact on a composite wing panel can cause intralaminar damage and delamination that are barely visible at the surface, while residual strength is already reduced. Predicting that internal damage needs through-thickness stress, which shell elements do not resolve, without the cost of a full 3D model at every iteration.",
     approach:
-      "Developed and implemented a higher-order unified finite element formulation as an Abaqus user element (UEL) in FORTRAN, coupled with a continuum damage model within a single non-linear implicit analysis. A separate explicit damage formulation was implemented as a VUMAT for non-linear impact simulations, and impact and indentation were modelled with contact and the test fixtures included.",
+      "Developed and implemented a higher-order unified finite element formulation as an Abaqus user element (UEL) in FORTRAN, coupled with a continuum damage model within a single non-linear implicit analysis. A separate explicit damage formulation was implemented as a VUMAT for impact simulations with impactor contact and the fixtures modelled, and indentation was simulated in both non-linear implicit and explicit analyses, modelling the test apparatus as a 3D solid with contact.",
     result:
       "Through-thickness stress and progressive damage available inside Abaqus, validated against bending, indentation and impact tests, with vibration models correlated against natural frequencies and mode shapes measured by laser vibrometry — so internal damage is predicted from the laminate mechanics rather than inferred from surface inspection. Published in Thin-Walled Structures.",
     stack: [
@@ -515,7 +515,7 @@ export const foundations: readonly Foundation[] = [
   },
   {
     area: "Non-linear FEA",
-    work: "Progressive damage in implicit analysis, explicit dynamics for impact, and impact and indentation modelled with contact and the test fixtures included",
+    work: "Progressive damage in implicit analysis; impact in explicit dynamics with impactor contact; indentation in both implicit and explicit analyses, with the test apparatus modelled as a 3D solid with contact",
     evidence: "Case 06 · Thin-Walled Structures (2022)",
   },
   {
