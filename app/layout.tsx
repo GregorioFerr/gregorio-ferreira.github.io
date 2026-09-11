@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     "Abaqus UEL UMAT",
     "process automation",
     "robot off-line programming",
+    "linear and non-linear finite element analysis",
     "automated fibre placement",
     "laser-assisted tape placement",
     "composite structures",

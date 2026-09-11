@@ -235,7 +235,7 @@ export const cases: readonly Case[] = [
     problem:
       "Laser-assisted tape placement consolidates thermoplastic tape in a single pass, in a fraction of a second under the roller, with no autoclave stage to follow. Voids trapped at that moment stay in the part, so sizing from ideal ply properties overstates the stiffness the panel actually has.",
     approach:
-      "Built a multiscale model to quantify the effect of that porosity. Microscale representative volume elements were generated in MATLAB by random fibre packing at the target fibre volume fraction, then populated three ways: a void-free baseline, parametric voids swept across void contents, and real void geometry traced from polished-section micrographs by edge detection. A Python layer assembled the extracted contours and built each Abaqus model, so the whole sweep was meshed and homogenised under periodic boundary conditions without manual setup.",
+      "Built a multiscale model to quantify the effect of that porosity. Microscale representative volume elements were generated in MATLAB by random fibre packing at the target fibre volume fraction, then populated three ways: a void-free baseline, parametric voids swept across void contents, and real void geometry traced from polished-section micrographs by edge detection. A Python layer assembled the extracted contours and built each Abaqus model, so the whole sweep was meshed and homogenised in linear elastic analyses under periodic boundary conditions without manual setup.",
     result:
       "Effective ply stiffness as a function of porosity, in a form that feeds laminate sizing, validated against tensile tests and a literature benchmark. Stiffness proved sensitive to void size and clustering, not only to void content. Published in the ICCS27 proceedings.",
     stack: [
@@ -361,7 +361,7 @@ export const cases: readonly Case[] = [
     problem:
       "A reinforced-thermoplastic and metal assembly had to lose significant weight without giving up structural performance, and had to stay manufacturable on an existing production line with existing suppliers.",
     approach:
-      "Redesigned around structural analysis and topology optimisation rather than incremental thinning, so that material was removed where the load path allowed it instead of uniformly. Carried the result through prototyping, tooling, mechanical testing, dimensional inspection and supplier qualification inside an ISO 9001 environment, translating engineering requirements into something the line could actually produce.",
+      "Redesigned around linear elastic analysis and topology optimisation rather than incremental thinning, so that material was removed where the load path allowed it instead of uniformly. Carried the result through prototyping, tooling, mechanical testing, dimensional inspection and supplier qualification inside an ISO 9001 environment, translating engineering requirements into something the line could actually produce.",
     result:
       "50% weight reduction with 15% improved structural performance, delivered from concept through to production, with the test and quality documentation needed to release it.",
     stack: ["SolidWorks", "FEA", "Topology optimisation", "DFM", "ISO 9001"],
@@ -401,7 +401,7 @@ export const cases: readonly Case[] = [
     problem:
       "An impact on a composite wing panel can cause intralaminar damage and delamination that are barely visible at the surface, while residual strength is already reduced. Predicting that internal damage needs through-thickness stress, which shell elements do not resolve, without the cost of a full 3D model at every iteration.",
     approach:
-      "Developed and implemented a higher-order unified finite element formulation as an Abaqus user element (UEL) in FORTRAN, coupled with a continuum damage model within a single implicit analysis. A separate explicit damage formulation was implemented as a VUMAT for transient impact simulations.",
+      "Developed and implemented a higher-order unified finite element formulation as an Abaqus user element (UEL) in FORTRAN, coupled with a continuum damage model within a single non-linear implicit analysis. A separate explicit damage formulation was implemented as a VUMAT for non-linear impact and indentation simulations, with impactor contact and the test fixtures modelled.",
     result:
       "Through-thickness stress and progressive damage available inside Abaqus, validated against bending, indentation and impact tests, with vibration models correlated against natural frequencies and mode shapes measured by laser vibrometry — so internal damage is predicted from the laminate mechanics rather than inferred from surface inspection. Published in Thin-Walled Structures.",
     stack: [
@@ -460,12 +460,12 @@ export const cases: readonly Case[] = [
 export const capabilities = [
   {
     heading: "Structural analysis",
-    line: "Analysis of composite structures — linear and non-linear static strength, buckling and stability, impact and progressive damage, correlated against tests.",
+    line: "Linear and non-linear finite element analysis of composite structures — static strength, modal response, buckling, impact and progressive damage, correlated against tests.",
     items: [
-      "Linear & non-linear static",
-      "Buckling & stability",
-      "Impact & transient dynamics",
-      "Progressive damage",
+      "Linear static & modal",
+      "Eigenvalue buckling",
+      "Non-linear damage (implicit)",
+      "Impact & contact (explicit)",
       "Micromechanics & homogenisation",
       "Test correlation",
     ],
@@ -519,13 +519,18 @@ export const foundations: readonly Foundation[] = [
     evidence: "Case 06 · Thin-Walled Structures (2022)",
   },
   {
+    area: "Non-linear solution methods",
+    work: "Incremental implicit analysis with progressive damage, and explicit dynamics for impact and indentation with contact and modelled fixtures",
+    evidence: "Case 06 · Thin-Walled Structures (2022)",
+  },
+  {
     area: "Micromechanics",
-    work: "Effective ply stiffness from representative volume elements under periodic boundary conditions",
+    work: "Effective ply stiffness from linear elastic representative volume elements under periodic boundary conditions",
     evidence: "Case 02 · ICCS27 (2024)",
   },
   {
     area: "Structural stability",
-    work: "Buckling and strength of variable-stiffness plates, reproducing a published benchmark case (Gürdal et al.)",
+    work: "Linear eigenvalue buckling and strength of variable-stiffness plates, reproducing a published benchmark case (Gürdal et al.)",
     evidence: "Benchmark study",
   },
   {
@@ -540,7 +545,7 @@ export const foundations: readonly Foundation[] = [
   },
   {
     area: "Structural optimisation",
-    work: "Topology optimisation interpreted into a mouldable design",
+    work: "Linear elastic topology optimisation interpreted into a mouldable design",
     evidence: "Case 05",
   },
   {
