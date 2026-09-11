@@ -401,7 +401,7 @@ export const cases: readonly Case[] = [
     problem:
       "An impact on a composite wing panel can cause intralaminar damage and delamination that are barely visible at the surface, while residual strength is already reduced. Predicting that internal damage needs through-thickness stress, which shell elements do not resolve, without the cost of a full 3D model at every iteration.",
     approach:
-      "Developed and implemented a higher-order unified finite element formulation as an Abaqus user element (UEL) in FORTRAN, coupled with a continuum damage model within a single non-linear implicit analysis. A separate explicit damage formulation was implemented as a VUMAT for non-linear impact and indentation simulations, with impactor contact and the test fixtures modelled.",
+      "Developed and implemented a higher-order unified finite element formulation as an Abaqus user element (UEL) in FORTRAN, coupled with a continuum damage model within a single non-linear implicit analysis. A separate explicit damage formulation was implemented as a VUMAT for non-linear impact simulations, and impact and indentation were modelled with contact and the test fixtures included.",
     result:
       "Through-thickness stress and progressive damage available inside Abaqus, validated against bending, indentation and impact tests, with vibration models correlated against natural frequencies and mode shapes measured by laser vibrometry — so internal damage is predicted from the laminate mechanics rather than inferred from surface inspection. Published in Thin-Walled Structures.",
     stack: [
@@ -509,48 +509,48 @@ export type Foundation = {
 
 export const foundations: readonly Foundation[] = [
   {
+    area: "Linear FEA",
+    work: "Static, modal and eigenvalue buckling analyses: verification of custom plate elements, correlation with measured vibration modes, and buckling of variable-stiffness plates against a published solution",
+    evidence: "Case 06 · Benchmark study",
+  },
+  {
+    area: "Non-linear FEA",
+    work: "Progressive damage in implicit analysis, explicit dynamics for impact, and impact and indentation modelled with contact and the test fixtures included",
+    evidence: "Case 06 · Thin-Walled Structures (2022)",
+  },
+  {
     area: "Finite element formulation",
-    work: "Higher-order plate elements from the Unified Formulation, implemented as Abaqus user elements and verified against a reference solution",
+    work: "Higher-order plate elements from the Unified Formulation, implemented as Abaqus user elements (UEL) in FORTRAN",
     evidence: "Case 06 · Thin-Walled Structures (2020)",
   },
   {
     area: "Damage mechanics",
-    work: "Continuum damage models for intralaminar failure, in implicit (user element) and explicit (VUMAT) analyses",
-    evidence: "Case 06 · Thin-Walled Structures (2022)",
-  },
-  {
-    area: "Non-linear solution methods",
-    work: "Incremental implicit analysis with progressive damage, and explicit dynamics for impact and indentation with contact and modelled fixtures",
+    work: "Continuum damage models for intralaminar failure, implemented in the user element and as a VUMAT",
     evidence: "Case 06 · Thin-Walled Structures (2022)",
   },
   {
     area: "Micromechanics",
-    work: "Effective ply stiffness from linear elastic representative volume elements under periodic boundary conditions",
+    work: "Linear elastic RVE homogenisation with void geometry traced from micrographs, quantifying the stiffness lost to porosity",
     evidence: "Case 02 · ICCS27 (2024)",
   },
   {
-    area: "Structural stability",
-    work: "Linear eigenvalue buckling and strength analysis of variable-stiffness plates, verified against a published solution",
-    evidence: "Benchmark study",
+    area: "Structural optimisation",
+    work: "Linear elastic topology optimisation of a load-bearing part, redrawn for moulding",
+    evidence: "Case 05",
   },
   {
     area: "Differential geometry",
-    work: "Frenet and Darboux frames and geodesic curvature for fibre paths on flat and doubly curved surfaces",
+    work: "Fibre paths built with the Frenet and Darboux frames, with geodesic curvature checked against the minimum steering radius of the tape",
     evidence: "Cases 01, 04 · Composites Part A (2024), ACM7 (2026)",
   },
   {
     area: "Robot kinematics",
-    work: "Frame composition and wrist-singularity avoidance for tape placement",
+    work: "Frame composition reworked to avoid a wrist singularity, and table tilt corrected with a fitted surface-normal field",
     evidence: "Case 03",
   },
   {
-    area: "Structural optimisation",
-    work: "Linear elastic topology optimisation interpreted into a mouldable design",
-    evidence: "Case 05",
-  },
-  {
     area: "Experimental mechanics",
-    work: "Mechanical testing, DIC and laser vibrometry used to validate models",
+    work: "Tensile, bending, indentation and impact tests, with digital image correlation and laser vibrometry, used for model validation",
     evidence: "Cases 02, 06",
   },
 ];

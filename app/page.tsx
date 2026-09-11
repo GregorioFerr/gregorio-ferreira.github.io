@@ -189,7 +189,7 @@ export default function Home() {
         id="foundations"
         index="03"
         title="Foundations"
-        lead="The theory behind the work above, each tied to where it was applied."
+        lead="Theory and analysis types behind the work above, each tied to the case, paper or study where it was applied."
       >
         <dl className="divide-y divide-line border-y border-line">
           {foundations.map((row) => (
