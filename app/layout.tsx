@@ -24,7 +24,7 @@ const monoCode = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://gregorio-ferreira-portfolio.vercel.app"),
+  metadataBase: new URL("https://gregorioferreira-portfolio.vercel.app"),
   title: {
     default: `${profile.name} — ${profile.role}`,
     template: `%s — ${profile.name}`,
