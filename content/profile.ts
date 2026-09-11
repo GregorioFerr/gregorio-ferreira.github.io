@@ -466,7 +466,7 @@ export const capabilities = [
     ],
   },
   {
-    heading: "Simulation & CAE",
+    heading: "Simulation methods",
     line: "Physics-based models built to be run hundreds of times, not once — parametric model generation, custom solver extensions, automated post-processing.",
     items: [
       "Abaqus implicit & explicit",
@@ -477,7 +477,7 @@ export const capabilities = [
     ],
   },
   {
-    heading: "Process automation",
+    heading: "Composite manufacturing automation",
     line: "The path from a CAD surface to a verified machine program — trajectory generation, off-line programming, robot code export, cell calibration.",
     items: [
       "KUKA off-line programming",
