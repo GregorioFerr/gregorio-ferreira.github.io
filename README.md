@@ -189,7 +189,6 @@ content/
 scripts/
   check-content.mjs   the consistency checker
 public/
-  cv/                 CV PDF served at /cv/...
   work/<case-id>/     case figures
   portrait.jpg        optional personal photo
 ```

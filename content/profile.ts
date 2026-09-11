@@ -15,9 +15,8 @@ export const profile = {
   affiliation: "Bernal Institute, University of Limerick",
   email: "gregorio.ferreira@protonmail.com",
   phone: "+353 83 137 3213",
-  cv: "/cv/Gregorio_Ferreira_CV.pdf",
   availability:
-    "Irish Stamp 4 — full work rights in Ireland, no employer sponsorship required. Open to relocation within the EU.",
+    "Irish Stamp 4 — full work rights in Ireland, no employer sponsorship required.",
 
   /**
    * Portrait. Drop a square image at public/portrait.jpg (or .webp) and set
@@ -37,7 +36,7 @@ export const profile = {
    * extensions, or the profile reads as too narrow to hire.
    */
   pitch:
-    "Experienced structural and simulation engineer specializing in advanced composites, with strong fundamentals in metallic structural mechanics — delivering analysis from sizing, stability, and damage tolerance to experimental test correlation, and carrying results into automated manufacturing pipelines and verified robot programs.",
+    "Structural and simulation engineer specialising in composite structures, delivering analysis from strength, stability and progressive damage to experimental test correlation, and carrying results into automated manufacturing pipelines and verified robot programs.",
 } as const;
 
 /**
@@ -46,7 +45,7 @@ export const profile = {
  * rather than inferring it from six case studies.
  */
 export const applications = [
-  "Aerospace & space structures",
+  "Aerospace structures",
   "High-performance composites (CF/PEEK)",
   "Hydrogen & pressure vessels",
   "Non-linear FEA & solver extensions",
@@ -191,7 +190,7 @@ export const cases: readonly Case[] = [
     problem:
       "A wing box requires access holes for inspection, but an elliptical man-hole interrupts the load path through the surrounding panel. Steering the fibres around the opening can preserve structural continuity, but only if the resulting layup remains within the manufacturing capabilities of the placement system.",
     approach:
-      "Finite element buckling and strength models defined the fibre-angle distributions around the opening. Those angles fed a MATLAB-based manufacturing simulation pipeline covering differential-geometry trajectory generation, arc-length resampling, steering-feasibility screening, and automated generation of KUKA KRL source and data files, with bilinear speed ramps, process-trigger sequencing and an explicit tool-frame convention. Each program was then verified in a digital twin for robot reachability and collision clearance before physical manufacturing.",
+      "Finite element buckling and strength models defined the fibre-angle distributions around the opening. Those angles fed a MATLAB-based manufacturing simulation pipeline covering differential-geometry trajectory generation, arc-length resampling, steering-feasibility screening, and automated generation of KUKA KRL source and data files, with bilinear speed ramps, process-trigger sequencing and an explicit tool-frame convention. Each program was then verified in off-line cell simulation for robot reachability and collision clearance before physical manufacturing.",
     result:
       "A wing-box panel design becomes a machine-ready program without manual teaching, and trajectories regenerate automatically when the man-hole geometry or the layup changes — so manufacturability is settled at the design stage rather than on the tool. Published in Composites Part A (2024).",
     stack: [
@@ -212,7 +211,7 @@ export const cases: readonly Case[] = [
           {
             src: "/work/design-to-manufacture/virtual-manufacturing.webp",
             alt: "Off-line simulation showing a KUKA robot on a linear rail carrying the tape-placement head over the part",
-            label: "Digital twin",
+            label: "Off-line simulation",
           },
           {
             src: "/work/design-to-manufacture/cell.webp",
@@ -222,7 +221,7 @@ export const cases: readonly Case[] = [
           {
             src: "/work/design-to-manufacture/manufactured-panel.webp",
             alt: "Deposited panel around a central cut-out, with close-up insets marking tow wrinkling, gaps and overlaps",
-            label: "Manufactured as designed",
+            label: "As manufactured",
           },
         ],
         caption:
@@ -237,7 +236,7 @@ export const cases: readonly Case[] = [
     problem:
       "Laser-assisted tape placement consolidates thermoplastic tape in a single pass, in a fraction of a second under the roller, with no autoclave stage to follow. Voids trapped at that moment stay in the part, so sizing from ideal ply properties overstates the stiffness the panel actually has.",
     approach:
-      "Built a multiscale model to price that porosity. Microscale representative volume elements were generated in MATLAB by random fibre packing at the target fibre volume fraction, then populated three ways: a void-free baseline, parametric voids swept across void contents, and real void geometry traced from polished-section micrographs by edge detection. A Python layer assembled the extracted contours and built each Abaqus model, so the whole sweep was meshed and homogenised under periodic boundary conditions without manual setup.",
+      "Built a multiscale model to quantify the effect of that porosity. Microscale representative volume elements were generated in MATLAB by random fibre packing at the target fibre volume fraction, then populated three ways: a void-free baseline, parametric voids swept across void contents, and real void geometry traced from polished-section micrographs by edge detection. A Python layer assembled the extracted contours and built each Abaqus model, so the whole sweep was meshed and homogenised under periodic boundary conditions without manual setup.",
     result:
       "Effective ply stiffness as a function of porosity, in a form that feeds laminate sizing, validated against tensile tests and a literature benchmark. Stiffness proved sensitive to void size and clustering, not only to void content. Published in the ICCS27 proceedings.",
     stack: [
@@ -367,7 +366,7 @@ export const cases: readonly Case[] = [
           {
             src: "/work/weight-reduction/manufactured-part.webp",
             alt: "The existing moulded long-fibre thermoplastic part, perforated with a honeycomb of holes, sitting on a bench scale",
-            label: "Study case, as built",
+            label: "Case study, as built",
           },
           {
             src: "/work/weight-reduction/load-case.webp",
@@ -393,13 +392,13 @@ export const cases: readonly Case[] = [
   {
     id: "solver-extension",
     title: "Predicting internal impact damage by FEA",
-    context: "University of São Paulo · 2014 — 2019",
+    context: "University of São Paulo · 2012 — 2019",
     problem:
       "An impact on a composite wing panel can cause intralaminar damage and delamination that are barely visible at the surface, while residual strength is already reduced. Predicting that internal damage needs through-thickness stress, which shell elements do not resolve, without the cost of a full 3D model at every iteration.",
     approach:
       "Developed and implemented a higher-order unified finite element formulation as an Abaqus user element (UEL) in FORTRAN, coupled with a continuum damage model within a single implicit analysis. A separate explicit damage formulation was implemented as a VUMAT for transient impact simulations.",
     result:
-      "Through-thickness stress and progressive damage available inside Abaqus, validated against bending, indentation, impact and modal test campaigns — so internal impact damage is predicted from the mechanics of the laminate rather than inferred from surface inspection. Published in Thin-Walled Structures.",
+      "Through-thickness stress and progressive damage available inside Abaqus, validated against bending, indentation and impact tests, with vibration models correlated against natural frequencies and mode shapes measured by laser vibrometry — so internal damage is predicted from the laminate mechanics rather than inferred from surface inspection. Published in Thin-Walled Structures.",
     stack: [
       "Abaqus UEL",
       "UMAT / VUMAT",
@@ -443,7 +442,7 @@ export const cases: readonly Case[] = [
           },
         ],
         caption:
-          "Predicted, then measured: an explicit impact model built element type by element type, its force history laid over the measured one with and without damage active, and full-field strain from digital image correlation. PhD work, University of São Paulo.",
+          "Predicted, then measured: an explicit impact model built element type by element type, its force history laid over the measured one with and without damage active, and full-field strain from digital image correlation. MSc and PhD work, University of São Paulo.",
       },
     ],
   },
@@ -456,7 +455,7 @@ export const cases: readonly Case[] = [
 export const capabilities = [
   {
     heading: "Structural analysis",
-    line: "Sizing and margin assessment for composite and metallic structures — linear and non-linear static strength, buckling and stability, damage tolerance, transient dynamics.",
+    line: "Analysis of composite structures — linear and non-linear static strength, buckling and stability, impact and progressive damage, correlated against tests.",
     items: [
       "Linear & non-linear static",
       "Buckling & stability",

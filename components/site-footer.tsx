@@ -11,12 +11,6 @@ export default function SiteFooter() {
           <p className="mt-1 text-sm text-muted">
             {profile.role} · {profile.location}
           </p>
-          <a
-            href={profile.cv}
-            className="mt-3 inline-block text-sm font-medium text-accent link-underline"
-          >
-            Download CV (PDF)
-          </a>
         </div>
 
         <ul className="flex flex-wrap gap-x-5 gap-y-1 font-mono text-[0.72rem] uppercase tracking-wider">

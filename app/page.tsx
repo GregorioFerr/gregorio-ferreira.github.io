@@ -57,14 +57,8 @@ export default function Home() {
 
         <div className="mt-7 flex flex-wrap items-center gap-2.5">
           <a
-            href={profile.cv}
-            className="rounded bg-accent px-4 py-2 text-sm font-medium text-accent-ink transition-opacity hover:opacity-90"
-          >
-            Download CV
-          </a>
-          <a
             href={`mailto:${profile.email}`}
-            className="rounded border border-line bg-surface px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
+            className="rounded bg-accent px-4 py-2 text-sm font-medium text-accent-ink transition-opacity hover:opacity-90"
           >
             {profile.email}
           </a>
@@ -311,7 +305,7 @@ export default function Home() {
         id="contact"
         index="05"
         title="Contact"
-        lead="Open to simulation, structural analysis and manufacturing-automation roles, and to industrial R&D collaboration."
+        lead="Open to simulation, structural analysis and manufacturing-automation roles, and to industrial R&D collaboration. CV available on request."
       >
         <div className="grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           <div className="bg-surface p-5">
