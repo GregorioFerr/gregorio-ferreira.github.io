@@ -213,7 +213,7 @@ export default function Home() {
         id="background"
         index="04"
         title="Background"
-        lead="The short version — the CV carries the detail."
+        lead="The short version — the full CV is available on request."
       >
         <div className="grid gap-10 lg:grid-cols-2">
           <div className="space-y-8">
