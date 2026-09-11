@@ -6,13 +6,14 @@ import {
   capabilities,
   cases,
   education,
+  foundations,
   languages,
   links,
   profile,
   publicationNote,
   roles,
   selectedPublications,
-  toolbox,
+  tools,
 } from "@/content/profile";
 
 export default function Home() {
@@ -183,29 +184,35 @@ export default function Home() {
         </ol>
       </Section>
 
-      {/* ========================================================= Toolbox */}
+      {/* ===================================================== Foundations */}
       <Section
-        id="toolbox"
+        id="foundations"
         index="03"
-        title="Toolbox"
-        lead="Tools I use routinely, not everything I have ever opened."
+        title="Foundations"
+        lead="The theory behind the work above, each tied to where it was applied."
       >
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {toolbox.map((group) => (
-            <div key={group.group}>
-              <h3 className="font-mono text-[0.68rem] uppercase tracking-wider text-accent">
-                {group.group}
-              </h3>
-              <ul className="mt-2.5 space-y-1">
-                {group.items.map((item) => (
-                  <li key={item} className="text-sm leading-6 text-ink/80">
-                    {item}
-                  </li>
-                ))}
-              </ul>
+        <dl className="divide-y divide-line border-y border-line">
+          {foundations.map((row) => (
+            <div
+              key={row.area}
+              className="grid gap-x-6 gap-y-1 py-3.5 md:grid-cols-[10rem_minmax(0,1fr)_12rem]"
+            >
+              <dt className="font-serif text-[0.95rem] font-semibold leading-snug text-navy">
+                {row.area}
+              </dt>
+              <dd className="text-sm leading-relaxed text-ink/85">{row.work}</dd>
+              <dd className="font-mono text-[0.68rem] leading-5 text-muted md:text-right">
+                {row.evidence}
+              </dd>
             </div>
           ))}
-        </div>
+        </dl>
+        <p className="mt-4 text-sm leading-relaxed text-muted">
+          <span className="font-mono text-[0.68rem] uppercase tracking-wider">
+            Tools
+          </span>{" "}
+          {tools.join(", ")}
+        </p>
       </Section>
 
       {/* ====================================================== Background */}
@@ -246,6 +253,11 @@ export default function Home() {
                     </p>
                     <p className="mt-0.5 font-medium text-navy">{entry.title}</p>
                     <p className="text-muted">{entry.org}</p>
+                    {entry.note ? (
+                      <p className="mt-0.5 text-[0.8rem] leading-snug text-muted">
+                        {entry.note}
+                      </p>
+                    ) : null}
                   </li>
                 ))}
               </ul>

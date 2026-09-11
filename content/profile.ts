@@ -36,7 +36,7 @@ export const profile = {
    * extensions, or the profile reads as too narrow to hire.
    */
   pitch:
-    "Structural and simulation engineer specialising in composite structures, delivering analysis from strength, stability and progressive damage to experimental test correlation, and carrying results into automated manufacturing pipelines and verified robot programs.",
+    "Structural and simulation engineer specialising in composite structures, delivering analysis from strength, stability and progressive damage to experimental test correlation, and turning composite designs into verified robot programs for automated fibre and tape placement.",
 } as const;
 
 /**
@@ -49,7 +49,7 @@ export const applications = [
   "High-performance composites (CF/PEEK)",
   "Hydrogen & pressure vessels",
   "Non-linear FEA & solver extensions",
-  "Design-to-manufacture automation",
+  "Automated fibre & tape placement (AFP/LATP)",
 ] as const;
 
 export const links = [
@@ -109,7 +109,6 @@ export const TAGS = [
   "Test correlation",
   "Image analysis",
   // Domain
-  "CF/PEEK",
   "DFM",
   "ISO 9001",
 ] as const;
@@ -185,14 +184,14 @@ export type Case = {
 export const cases: readonly Case[] = [
   {
     id: "design-to-manufacture",
-    title: "Manufacturing a wing-box panel with an elliptical man-hole",
+    title: "Steering fibres around a man-hole within placement limits",
     context: "VariComp, University of Limerick · 2022 — 2025",
     problem:
       "A wing box requires access holes for inspection, but an elliptical man-hole interrupts the load path through the surrounding panel. Steering the fibres around the opening can preserve structural continuity, but only if the resulting layup remains within the manufacturing capabilities of the placement system.",
     approach:
-      "Finite element buckling and strength models defined the fibre-angle distributions around the opening. Those angles fed a MATLAB-based manufacturing simulation pipeline covering differential-geometry trajectory generation, arc-length resampling, steering-feasibility screening, and automated generation of KUKA KRL source and data files, with bilinear speed ramps, process-trigger sequencing and an explicit tool-frame convention. Each program was then verified in off-line cell simulation for robot reachability and collision clearance before physical manufacturing.",
+      "The panel's variable-stiffness design, with fibre angles varying around the opening, was defined earlier in the project. Fibre paths were computed from it with the Frenet frame, so that their curvature could be checked against the minimum steering radius of the tape before any code was written, and accepted paths were converted automatically into KUKA KRL programs with speed ramps and process triggers. Each program was verified in off-line cell simulation for reach and collision clearance before deposition.",
     result:
-      "A wing-box panel design becomes a machine-ready program without manual teaching, and trajectories regenerate automatically when the man-hole geometry or the layup changes — so manufacturability is settled at the design stage rather than on the tool. Published in Composites Part A (2024).",
+      "A variable-stiffness design becomes a machine-ready robot program without manual teaching, with steering feasibility checked on the computed paths before anything reaches the tool. Published in Composites Part A (2024).",
     stack: [
       "MATLAB",
       "KUKA KRL",
@@ -231,7 +230,7 @@ export const cases: readonly Case[] = [
   },
   {
     id: "as-manufactured",
-    title: "Sizing to the as-manufactured part, not the ideal one",
+    title: "Stiffness of the as-manufactured ply, not the ideal one",
     context: "VariComp, University of Limerick · 2022 — 2025",
     problem:
       "Laser-assisted tape placement consolidates thermoplastic tape in a single pass, in a fraction of a second under the roller, with no autoclave stage to follow. Voids trapped at that moment stay in the part, so sizing from ideal ply properties overstates the stiffness the panel actually has.",
@@ -279,7 +278,7 @@ export const cases: readonly Case[] = [
     approach:
       "Isolated each contribution instead of tuning empirically: fitted the tool surface normal field to correct table tilt spatially, reworked the frame composition to avoid the wrist singularity, defined a trigger convention with an on-table run-in so the process reaches steady state before the part, and added compensation for roller position. Fine-tuning variables were exposed in the robot program so operators can adjust at the pendant without editing code.",
     result:
-      "Defects became traceable to a named cause rather than attributed to the material, and the process settings moved from operator knowledge into the program itself.",
+      "Defects could be traced to specific process causes rather than attributed to the material, and the process settings moved from operator knowledge into the program itself.",
     stack: [
       "KUKA KRL",
       "Laser-assisted tape placement",
@@ -305,15 +304,21 @@ export const cases: readonly Case[] = [
   },
   {
     id: "vessel-sizing",
-    title: "Fixing vessel geometry before committing to tooling",
+    title: "Checking a vessel can be laid down before tooling exists",
     context: "HyFloatComp, University of Limerick · 2025 — present",
     problem:
-      "A composite hydrogen pressure vessel commits you to expensive tooling early. Geometry and laminate have to be defended on analysis, before anything is machined, or the cost of being wrong lands after the mandrel exists.",
+      "A structurally optimised composite pressure vessel is only useful if tape placement can follow its fibre paths. On doubly curved surfaces, steering limits, gaps and thickness build-up can make a sound design unmanufacturable, and that usually surfaces only after the mandrel and tooling exist.",
     approach:
-      "Parametric structural analysis across two vessel families, super ellipsoidal and toroidal, coupled to computational fibre-path generation so that manufacturability is assessed at the same time as structural performance — a shape that sizes well but cannot be laid down is rejected in the same loop. Mandrel and fixturing concepts were generated by scripted CAD macros rather than modelled by hand.",
+      "Starting from vessel geometries and fibre-angle distributions defined by project colleagues, fibre paths were generated on the surface using differential geometry, and each trajectory was screened for steering feasibility, coverage and thickness build-up before deposition. For the toroidal vessel, mandrel and drive concepts were generated by scripted CAD macros and placed in the robotic cell to check reach before anything was machined.",
     result:
-      "Geometry and laminate decisions carry simulation evidence and hand straight over to the robotic pipeline, with no redraw between design and manufacture.",
-    stack: ["Abaqus", "MATLAB", "SolidWorks API", "FreeCAD scripting", "CF/PEEK"],
+      "Steering and coverage problems are identified on the computed paths before tooling is committed, and selected trajectories were deposited on the vessel to compare the prediction with the laid-down tape.",
+    stack: [
+      "MATLAB",
+      "Differential geometry",
+      "Fibre steering",
+      "SolidWorks API",
+      "FreeCAD scripting",
+    ],
     figures: [
       {
         panels: [
@@ -329,7 +334,7 @@ export const cases: readonly Case[] = [
           },
         ],
         caption:
-          "Super ellipsoidal vessel: the geometry fixed on analysis and drawn to dimension, then fibre paths generated on that same surface to show it can actually be laid down. Trajectory figure from Ferreira et al., ACM7 (2026).",
+          "Super ellipsoidal vessel: the given geometry drawn to dimension, then fibre paths generated on that surface to check it can be laid down. Trajectory figure from Ferreira et al., ACM7 (2026).",
       },
       {
         panels: [
@@ -461,18 +466,18 @@ export const capabilities = [
       "Buckling & stability",
       "Impact & transient dynamics",
       "Progressive damage",
-      "Laminate sizing",
+      "Micromechanics & homogenisation",
       "Test correlation",
     ],
   },
   {
     heading: "Simulation methods",
-    line: "Physics-based models built to be run hundreds of times, not once — parametric model generation, custom solver extensions, automated post-processing.",
+    line: "Physics-based models built to be rerun, not run once — parametric model generation, custom solver extensions, automated post-processing.",
     items: [
       "Abaqus implicit & explicit",
       "UEL / UMAT / VUMAT (FORTRAN)",
       "Python–Abaqus scripting",
-      "Parametric studies & DoE",
+      "Parametric studies",
       "Topology optimisation",
     ],
   },
@@ -489,23 +494,73 @@ export const capabilities = [
   },
 ] as const;
 
-export const toolbox = [
+/* ================================================================
+   FOUNDATIONS — the theory behind the cases.
+
+   Rule: a row only goes in if it points to a case, a paper or a study
+   that can be shown. No evidence, no row.
+   ================================================================ */
+
+export type Foundation = {
+  area: string;
+  work: string;
+  evidence: string;
+};
+
+export const foundations: readonly Foundation[] = [
   {
-    group: "Analysis",
-    items: ["Abaqus", "Linear & non-linear FEA", "Implicit & explicit", "Buckling", "Damage mechanics", "Modal analysis"],
+    area: "Finite element formulation",
+    work: "Higher-order plate elements from the Unified Formulation, implemented as Abaqus user elements and verified against a reference solution",
+    evidence: "Case 06 · Thin-Walled Structures (2020)",
   },
   {
-    group: "Code",
-    items: ["Python", "MATLAB", "FORTRAN", "KUKA KRL", "Git"],
+    area: "Damage mechanics",
+    work: "Continuum damage models for intralaminar failure, in implicit (user element) and explicit (VUMAT) analyses",
+    evidence: "Case 06 · Thin-Walled Structures (2022)",
   },
   {
-    group: "CAD & robotics",
-    items: ["SolidWorks", "FreeCAD", "RoboDK", "KUKA KRC2", "Off-line programming"],
+    area: "Micromechanics",
+    work: "Effective ply stiffness from representative volume elements under periodic boundary conditions",
+    evidence: "Case 02 · ICCS27 (2024)",
   },
   {
-    group: "Test & measurement",
-    items: ["Mechanical testing", "DIC", "Optical microscopy", "Laser vibrometry", "Dimensional inspection"],
+    area: "Structural stability",
+    work: "Buckling and strength of variable-stiffness plates, reproducing a published benchmark case (Gürdal et al.)",
+    evidence: "Benchmark study",
   },
+  {
+    area: "Differential geometry",
+    work: "Frenet and Darboux frames and geodesic curvature for fibre paths on flat and doubly curved surfaces",
+    evidence: "Cases 01, 04 · Composites Part A (2024), ACM7 (2026)",
+  },
+  {
+    area: "Robot kinematics",
+    work: "Frame composition and wrist-singularity avoidance for tape placement",
+    evidence: "Case 03",
+  },
+  {
+    area: "Structural optimisation",
+    work: "Topology optimisation interpreted into a mouldable design",
+    evidence: "Case 05",
+  },
+  {
+    area: "Experimental mechanics",
+    work: "Mechanical testing, DIC and laser vibrometry used to validate models",
+    evidence: "Cases 02, 06",
+  },
+];
+
+/** One line under Foundations — the tools already appear in the cases. */
+export const tools = [
+  "Abaqus",
+  "Python",
+  "MATLAB",
+  "FORTRAN",
+  "KUKA KRL",
+  "RoboDK",
+  "SolidWorks",
+  "FreeCAD",
+  "Git",
 ] as const;
 
 /* ================================================================
@@ -525,18 +580,33 @@ export const roles = [
   },
 ] as const;
 
-export const education = [
+export type EducationEntry = {
+  period: string;
+  title: string;
+  org: string;
+  /** Optional one-line note, e.g. the thesis title. */
+  note?: string;
+};
+
+export const education: readonly EducationEntry[] = [
   {
     period: "2014 — 2019",
     title: "PhD, Mechanical Engineering — Aeronautical Structures",
     org: "University of São Paulo",
+    note: "Thesis: Unified finite element formulations for composite plate structures",
   },
   {
     period: "2012 — 2014",
     title: "MSc, Mechanical Engineering — Aeronautical Structures",
     org: "University of São Paulo",
   },
-] as const;
+  {
+    period: "2006 — 2011",
+    title: "BEng, Civil Engineering",
+    org: "Federal University of Alagoas",
+    note: "Final-year thesis on fibre-reinforced polymer pressure vessels",
+  },
+];
 
 export type Publication = {
   title: string;
@@ -580,7 +650,7 @@ export const languages = [
 export const navigation = [
   { href: "#capabilities", label: "Capabilities" },
   { href: "#cases", label: "Work" },
-  { href: "#toolbox", label: "Toolbox" },
+  { href: "#foundations", label: "Foundations" },
   { href: "#background", label: "Background" },
   { href: "#contact", label: "Contact" },
 ] as const;

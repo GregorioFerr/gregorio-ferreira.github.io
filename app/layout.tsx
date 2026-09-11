@@ -38,6 +38,8 @@ export const metadata: Metadata = {
     "Abaqus UEL UMAT",
     "process automation",
     "robot off-line programming",
+    "automated fibre placement",
+    "laser-assisted tape placement",
     "composite structures",
   ],
   authors: [{ name: profile.fullName }],

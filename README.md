@@ -31,7 +31,7 @@ content/profile.ts
 | `TAGS`                 | The controlled vocabulary every case tag must use     |
 | `capabilities`         | 01 What I do                                          |
 | `cases`                | 02 Selected work — the core of the page               |
-| `toolbox`              | 03 Toolbox                                            |
+| `foundations`, `tools` | 03 Foundations — theory tied to cases and papers     |
 | `roles`, `education`   | 04 Background                                         |
 | `selectedPublications` | 04 Background — credential column                     |
 | `links`                | Contact grid and footer                               |
